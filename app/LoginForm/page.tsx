@@ -1,7 +1,17 @@
 import React from 'react'
 import TextInput from '../../components/TextInput'
+import { useForm } from 'react-hook-form'
 
 const test = () => {
+
+
+const {
+  register,
+  handleSubmit,
+  formState:{ errors },
+  setError
+} = useForm()
+
   return (
    <div className='flex min-h-screen justify-center items-center bg-amber-400 '>
     <div className='flex flex-col justify-center items-center w-96  border-none rounded-xl bg-slate-500 text-center'>
@@ -11,15 +21,46 @@ const test = () => {
       placeholder="email"
       rounded="xl"
       shadow="xl"
+      name="email"
+      register={register}
+      error={errors}
+      validationSchema={{
+        required: true,
+        patterError: "Invalid email",
+        requiredError:'Email cannot be empty'
+      }}
+
        />
-      <input className='my-8 p-3 rounded-xl mb-8 hover:shadow-xl' placeholder='password'/>
+       <div className='mb-8'>
+       <TextInput
+        type="text"
+        placeholder="password"
+        rounded="xl"
+        shadow="xl"
+        name="email"
+        register={register}
+        error={errors}
+        validationSchema={{
+        required: true,
+        pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        patterError: "Invalid email",
+        requiredError:'Email cannot be empty'
+      }}
+
+       />
+       </div>
+      
+
+          {/* LOGIN BUTTON   */}
 
           <button
             type="submit"
-            className="bg-black px-5 py-2 rounded-full "
+            className="   bg-black px-5 py-2 rounded-full "
           >
             LOGIN
           </button>
+
+          {/* LINKS */}
 
       <div className="flex w-full flex-col  justify-center items-center p-2 my-2">
           <div className="flex flex-row justify-center items-center text-center align-middle">
